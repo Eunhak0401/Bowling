@@ -1,14 +1,15 @@
 s = 10
 p = 10
 str('-')
+score = str(s)
+score = str(p)
+score = int(score)
 
 for i in range(1,21):
         for i in range(1,2):
                 if (score == s):
-                        score = input('점수를 입력하시오:')
-                        score = str(s)
-                        score = str(p)
-                        score = int(score)
+                        score = input('')
+                       
 
 if 1 <= score <= 10:
         print(score)
