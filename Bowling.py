@@ -1,23 +1,27 @@
 s = 10
 p = 10
-str('-')
-score = str(s)
-score = str(p)
+minus = "-"
+score = int(s)
+score = int(p)
 score = int(score)
+score = int(minus)
 
-for i in range(1,21):
-        for i in range(1,2):
-                if (score == s):
-                        score = input('')
-                       
 
 if 1 <= score <= 10:
         print(score)
 elif (score == s or score == p):
         print(score)
-elif ('-' == 0):
+elif (minus == 0):
         print(score)
-        pass
+else:
+        print("다시 입력하세요")
+
+'''
+for i in range(1,21):
+        for i in range(1,2):
+                if (score == s):
+                        score = input('')
+                       '''
 
 
 
@@ -25,7 +29,7 @@ elif ('-' == 0):
 
 
 
-        '''
+'''
 if score == 10:
         score = 10
 elif score == 9:
