@@ -6,15 +6,15 @@ score = int(p)
 score = int(score)
 score = int(minus)
 
-
-if 1 <= score <= 10:
-        print(score)
-elif (score == s or score == p):
-        print(score)
-elif (minus == 0):
-        print(score)
-else:
-        print("다시 입력하세요")
+for i in range(1,21,1):
+        if 1 <= score <= 10:
+                print(score)
+        elif (score == s or score == p):
+                print(score)
+        elif (minus == 0):
+                print(score)
+        else:
+                print("다시 입력하세요")
 
 '''
 for i in range(1,21):
@@ -22,11 +22,6 @@ for i in range(1,21):
                 if (score == s):
                         score = input('')
                        '''
-
-
-
-
-
 
 
 '''
