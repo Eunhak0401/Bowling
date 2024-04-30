@@ -16,15 +16,16 @@ for i in range(1,21,1):
         else:
                 print("다시 입력하세요")
 
+
 '''
 for i in range(1,21):
         for i in range(1,2):
                 if (score == s):
                         score = input('')
-                       '''
 
 
-'''
+
+
 if score == 10:
         score = 10
 elif score == 9:
