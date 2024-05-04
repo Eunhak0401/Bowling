@@ -1,20 +1,24 @@
+
 s = 10
 p = 10
-minus = "-"
+m = 0
+socre = int(m)
 score = int(s)
 score = int(p)
-score = int(score)
-score = int(minus)
 
-for i in range(1,21,1):
+while True:
+        socre = int(input("점수를 입력하시오: "))
         if 1 <= score <= 10:
                 print(score)
-        elif (score == s or score == p):
+        elif score == s:
+                print(socre)
+        elif score == p :
                 print(score)
-        elif (minus == 0):
+        elif score == m:
                 print(score)
-        else:
+        elif score >= 11:
                 print("다시 입력하세요")
+                break
 
 
 '''
