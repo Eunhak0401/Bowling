@@ -1,10 +1,11 @@
+if __name__ == '__main__':
 
-s = 10
-p = 10
-m = 0
-socre = int(m)
-score = int(s)
-score = int(p)
+        s = 10
+        p = 10
+        m = 0
+        socre = int(m)
+        score = int(s)
+        score = int(p)
 
 while True:
         socre = int(input("점수를 입력하시오: "))
@@ -20,15 +21,11 @@ while True:
                 print("다시 입력하세요")
                 break
 
-
 '''
 for i in range(1,21):
         for i in range(1,2):
                 if (score == s):
                         score = input('')
-
-
-
 
 if score == 10:
         score = 10
@@ -51,5 +48,4 @@ elif score == 2:
 elif score == 1:
         score = 1
         print(score)
-
 '''
