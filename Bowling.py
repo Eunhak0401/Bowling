@@ -31,7 +31,16 @@ set1 = 10 * frame
 
  # 함수 안에 리스트 생성 후 그 안에 점수를 넣는 방식
  def game():
-         score[]
+    score = []
+    print('숫자를 입력하세요:')
+    while True:
+        bowling_score = input()
+
+        if 1 <= bowling_score <= 10:
+            score.append(bowling_score)
+            print(f"현재 점수: {score}")
+
+print(game())
 
 
 
