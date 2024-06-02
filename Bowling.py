@@ -32,16 +32,30 @@ set1 = 10 * frame
  # 함수 안에 리스트 생성 후 그 안에 점수를 넣는 방식
  def game():
     score = []
-    print('숫자를 입력하세요:')
     while True:
-        bowling_score = input()
+        print('점수를 입력하세요:', end='')
+        user_input = str(input())
 
-        if 1 <= bowling_score <= 10:
-            score.append(bowling_score)
-            print(f"현재 점수: {score}")
+        if user_input == 's':
+            score.append(10)
+            print(score)
+        elif user_input == 'p':
+            score.append(10)
+            print(score)
+        elif user_input == '-':
+            score.append(0)
+            print(score)
+        try:
+            bowling_score = int(input(user_input))
+            if 1 <= bowling_score <= 10:
+                score.append(bowling_score)
+                print(score)
+        except ValueError:
+            print("유효한 점수를 입력하세요.")
+
+    return score
 
 print(game())
-
 
 
 
