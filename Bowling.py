@@ -8,20 +8,27 @@ def game():
         return score
 
     temp_list = []
+    previous_score = None
+
     for char in user_input:
         if char == 'S':
             temp_list.append(10)
+            score.append(temp_list)
+            temp_list = []
+            previous_score = None
         elif char == 'P':
-            temp_list.append(10)
+            if previous_score is not None:
+                temp_list.append(10 - previous_score)
         elif char == '-':
             temp_list.append(0)
+            previous_score = 0
         else:
             try:
                 bowling_score = int(char)
                 if 1 <= bowling_score <= 10:
                     temp_list.append(bowling_score)
-                else:
-                    print(f"점수 {bowling_score}은(는) 1에서 10 사이여야 합니다.")
+                    previous_score = bowling_score
+
             except ValueError:
                 print(f"유효하지 않은 입력: {char}")
 
@@ -34,7 +41,9 @@ def game():
 
     # 현재 점수 합계 계산
     total_score = sum(sum(pair) for pair in score)
+    print(f"현재 점수 리스트: {score}")
     print(f"점수: {total_score}")
+
 
     return score
 
@@ -42,6 +51,7 @@ def game():
 if __name__ == '__main__':
     final_score = game()
     total_final_score = sum(sum(pair) for pair in final_score)
+
 
 
 
