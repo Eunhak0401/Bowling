@@ -15,6 +15,7 @@ def game():
     # 점수 입력 후 리스트에 점수 추가
     for char in user_input:
         if char == 'S':
+            # 점수 'S' 눌리면 리스트에 10점 추가
             temp_list.append(10)
             score.append(temp_list)
             temp_list = []
@@ -23,10 +24,16 @@ def game():
         elif char == 'P':
             if previous_score is not None:
                 temp_list.append(10 - previous_score)
+                previous_score = 10 - previous_score
+                score.append(temp_list)
+                temp_list = []
                 # '-'가 눌리면 리스트에 0점 추가
         elif char == '-':
             temp_list.append(0)
             previous_score = 0
+            if len(temp_list) == 2:
+                score.append(temp_list)
+                temp_list = []
         else:
             # 리스트 안 숫자점수 추가
             try:
@@ -39,6 +46,7 @@ def game():
                 print(f"유효하지 않은 입력: {char}")
 
                 # 'S'가 있는 경우 다음 두 개의 점수를 추가
+                # 'P'가 있는 경우 다음 한 개의 점수를 추가
                 # 현재 문제있음 적용x
                 '''
                 result_score = score[:]
@@ -54,9 +62,11 @@ def game():
     for i in range(0, len(temp_list), 2):
         score.append(temp_list[i:i + 2])
 
+
         # 10프레임까지, 10프레임이 넘어가면 점수 추가 안됨.
         if len(score) >= 10:
             break
+
 
     # 현재 점수 합계 계산
     total_score = sum(sum(pair) for pair in score)
