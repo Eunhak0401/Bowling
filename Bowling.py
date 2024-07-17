@@ -52,17 +52,23 @@ def game():
             except ValueError:
                 print(f"유효하지 않은 입력: {char}")
 
-                # 'S'가 있는 경우 다음 두 개의 점수를 추가
-                # 'P'가 있는 경우 다음 한 개의 점수를 추가
+                # 남은 temp_list 추가 (기존 프레임이 꽉 차지 않은 경우)
+                if temp_list and len(score) < 10:
+                    score.append(temp_list)
+
                 # 추가 점수 리스트 작성
-                '''
                 for i in range(len(score)):
-                    if 10 in score[i]:  # 'S'가 있는 리스트
+                    if score[i] == [10]:  # 'S'가 있는 리스트
                         if i + 1 < len(score):
-                            extra_scores.append(score[i + 1])
-                        if i + 2 < len(score):
-                            extra_scores.append(score[i + 2])
-                '''
+                            extra_scores.append(score[i + 1][0])  # 다음 프레임의 첫 점수
+                            if len(score[i + 1]) == 2:
+                                extra_scores.append(score[i + 1][1])  # 다음 프레임의 두 번째 점수 (있을 경우)
+                            elif i + 2 < len(score):
+                                extra_scores.append(score[i + 2][0])  # 다다음 프레임의 첫 점수
+                    elif sum(score[i]) == 10 and len(score[i]) == 2:  # 'P'가 있는 리스트
+                        if i + 1 < len(score):
+                            extra_scores.append(score[i + 1][0])  # 다음 프레임의 첫 점수만 추가
+                            
     # 2개씩 끊어서 리스트에 추가
     for i in range(0, len(temp_list), 2):
         score.append(temp_list[i:i + 2])
@@ -75,10 +81,12 @@ def game():
 
     # 현재 점수 합계 계산
     total_score = sum(sum(pair) for pair in score)
+    total_extra_score = sum(extra_scores)
+
     print(f"현재 점수 리스트: {score}")
     print(f"추가 점수 리스트: {extra_scores}")
     print(f"점수: {total_score}")
-
+    print(f"추가 점수 합계: {total_extra_score}")
 
     return score, extra_scores
 
