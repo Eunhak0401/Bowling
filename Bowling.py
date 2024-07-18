@@ -52,31 +52,72 @@ def game():
             except ValueError:
                 print(f"유효하지 않은 입력: {char}")
 
+                # 10프레임까지, 10프레임이 넘어가면 점수 추가 안됨.
+                if len(score) >= 10:
+                    break
+
+                # 2개씩 끊어서 리스트에 추가
+                for i in range(0, len(temp_list), 2):
+                    score.append(temp_list[i:i + 2])
+
+
                 # 남은 temp_list 추가 (기존 프레임이 꽉 차지 않은 경우)
                 if temp_list and len(score) < 10:
                     score.append(temp_list)
 
-                # 추가 점수 리스트 작성
-                for i in range(len(score)):
-                    if score[i] == [10]:  # 'S'가 있는 리스트
-                        if i + 1 < len(score):
-                            extra_scores.append(score[i + 1][0])  # 다음 프레임의 첫 점수
-                            if len(score[i + 1]) == 2:
-                                extra_scores.append(score[i + 1][1])  # 다음 프레임의 두 번째 점수 (있을 경우)
-                            elif i + 2 < len(score):
-                                extra_scores.append(score[i + 2][0])  # 다다음 프레임의 첫 점수
-                    elif sum(score[i]) == 10 and len(score[i]) == 2:  # 'P'가 있는 리스트
-                        if i + 1 < len(score):
-                            extra_scores.append(score[i + 1][0])  # 다음 프레임의 첫 점수만 추가
-                            
-    # 2개씩 끊어서 리스트에 추가
-    for i in range(0, len(temp_list), 2):
-        score.append(temp_list[i:i + 2])
+                    # 추가 프레임 생성
+                    if len(temp_list) > 0:
+                        score.append(temp_list[:2])  # 두 점수만 추가
+
+                    extra_scores.extend(temp_list)
+
+                elif sum(last_frame) == 10 and len(last_frame) == 2:  # 마지막 프레임이 스페어인 경우
+                    next_char = user_input[len(user_input) - 1]
+                    if next_char == 'S':
+                        extra_scores.append(10)
+                    elif next_char == '-':
+                        extra_scores.append(0)
+                    else:
+                        try:
+                            extra_scores.append(int(next_char))
+                        except ValueError:
+                            print(f"유효하지 않은 입력: {next_char}")
 
 
-        # 10프레임까지, 10프레임이 넘어가면 점수 추가 안됨.
-        if len(score) >= 10:
-            break
+                    # 10프레임이 넘어가면 추가 점수 처리
+                    if len(score) == 10:
+                        temp_list = score[-1]
+                        if temp_list == [10]:  # 마지막 프레임이 스트라이크인 경우
+                            temp_list = []
+                            for char in user_input[len(user_input) - 2:]:  # 마지막 두 문자를 확인
+                                if char == 'S':
+                                    temp_list.append(10)
+                                elif char == 'P':
+                                    if previous_score is not None:
+                                        temp_list.append(10 - previous_score)
+                                elif char == '-':
+                                    temp_list.append(0)
+                                else:
+                                    try:
+                                        bowling_score = int(char)
+                                        if 0 <= bowling_score <= 10:
+                                            temp_list.append(bowling_score)
+                                    except ValueError:
+                                        print(f"유효하지 않은 입력: {char}")
+
+                            extra_scores.extend(temp_list)
+
+                        elif sum(last_frame) == 10 and len(last_frame) == 2:  # 마지막 프레임이 스페어인 경우
+                            next_char = user_input[len(user_input) - 1]
+                            if next_char == 'S':
+                                extra_scores.append(10)
+                            elif next_char == '-':
+                                extra_scores.append(0)
+                            else:
+                                try:
+                                    extra_scores.append(int(next_char))
+                                except ValueError:
+                                    print(f"유효하지 않은 입력: {next_char}")
 
 
     # 현재 점수 합계 계산
