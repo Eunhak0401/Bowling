@@ -8,6 +8,7 @@ def game():
 
     temp_list = []
     frame_index = 0
+    previous_score = 0
 
     for char in user_input:
         if char == 'S':
@@ -26,9 +27,9 @@ def game():
                     temp_list.append(10 - previous_score)
                     score.append(temp_list)
                     temp_list = []
-            else:
-                bonus_scores.append(10 - previous_score)
-            previous_score = 10 - previous_score
+                else:
+                    bonus_scores.append(10 - previous_score)
+                previous_score = 10 - previous_score
         elif char == '-':
             if len(score) < 10:
                 temp_list.append(0)
@@ -56,7 +57,6 @@ def game():
             except ValueError:
                 print(f"유효하지 않은 입력: {char}")
 
-
     # 점수 계산
     total_score = 0
     for i, frame in enumerate(score):
@@ -83,13 +83,6 @@ def game():
                 if i + 1 < len(score):
                     next_frame = score[i + 1]
                     extra_points.append(next_frame[0])
-
-    # 10프레임 이후 보너스 점수에서 스페어 처리
-    if len(score) == 10:
-        last_frame = score[-1]
-        if len(last_frame) == 2 and sum(last_frame) == 10 and last_frame[0] != 10:
-            if len(bonus_scores) > 0:
-                extra_points.append(bonus_scores[0])
 
 
     # 점수 출력
