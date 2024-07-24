@@ -10,18 +10,16 @@ def game():
     previous_score = 0
 
     for char in user_input:
-        if char == 'S':
-            if len(score) < 10:
+        if char == 'S':  # 스트라이크 눌렀을때
+            if len(score) < 10: # 10프레임이 넘어가면
                 temp_list.append(10)
                 score.append(temp_list)
                 temp_list = []
-            # 10프레임이 넘어가면 보너스 점수 리스트에 추가
-            else:
+            else: # 10프레임이 넘어가면 보너스 점수 리스트에 추가
                 bonus_scores.append(10)
             previous_score = 10
-        elif char == 'P':
-            # 'P'는 한 리스트 안에 합이 10이므로 '처음 점수가 10이 아니라면' 조건을 붙인다.
-            if previous_score != 10:
+        elif char == 'P': # 스페어 눌렀을때
+            if previous_score != 10: # 'P'는 한 리스트 안에 합이 10이므로 '처음 점수가 10이 아니라면' 조건을 붙인다.
                 if len(score) < 10:
                     temp_list.append(10 - previous_score)
                     score.append(temp_list)
@@ -29,7 +27,7 @@ def game():
                 else:
                     bonus_scores.append(10 - previous_score)
                 previous_score = 10
-        elif char == '-':
+        elif char == '-': # 0점일때
             if len(score) < 10:
                 temp_list.append(0)
                 if len(temp_list) == 2:
@@ -41,11 +39,10 @@ def game():
         else:
             try:
                 bowling_score = int(char)
-                if 0 <= bowling_score <= 10:
+                if 0 <= bowling_score <= 10: # 0부터 10점이 눌렸을때
                     if len(score) < 10:
                         temp_list.append(bowling_score)
-                        # 리스트 하나에 점수 2개 초과시 새로운 리스트 생성
-                        if len(temp_list) == 2:
+                        if len(temp_list) == 2: # 리스트 하나에 점수 2개 초과시 새로운 리스트 생성
                             score.append(temp_list)
                             temp_list = []
                     else:
@@ -62,8 +59,7 @@ def game():
 
     # 추가 점수 계산
     for i, frame in enumerate(score):
-        # 프레임의 합이 10인지 확인
-        if sum(frame) == 10:
+        if sum(frame) == 10: # 프레임의 합이 10인지 확인
             if frame[0] == 10:  # 스트라이크일때
                 # 다음 프레임 존재 여부 확인
                 if i + 1 < len(score):
