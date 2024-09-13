@@ -3,8 +3,9 @@ def game():
     extra_points = []  # 추가 점수 리스트
     bonus_scores = []  # 보너스 점수 리스트
 
-    print('점수 입력:', end=' ')
+
     user_input = input().strip()
+
 
     temp_list = []  # 현재 점수 리스트
     previous_score = 0
@@ -82,12 +83,12 @@ def game():
     total_bonus_score = sum(bonus_scores)
     final_score = total_score + total_extra_score + total_bonus_score
 
-    print(f"현재 점수 리스트: {score}")
-    print(f"추가 점수 리스트: {extra_points}")
-    print(f"보너스 점수 리스트: {bonus_scores}")
-    print(f"점수: {total_score}")
-    print(f"추가 점수 리스트 합계: {total_extra_score}")
-    print(f"보너스 점수 합계: {total_bonus_score}")
+    # print(f"현재 점수 리스트: {score}")
+    # print(f"추가 점수 리스트: {extra_points}")
+    # print(f"보너스 점수 리스트: {bonus_scores}")
+    # print(f"점수: {total_score}")
+    # print(f"추가 점수 리스트 합계: {total_extra_score}")
+    # print(f"보너스 점수 합계: {total_bonus_score}")
 
     return score, extra_points, bonus_scores
 
@@ -99,4 +100,4 @@ if __name__ == '__main__':
     total_bonus_score = sum(bonus_scores)
     final_score = total_score + total_extra_score + total_bonus_score
 
-    print(f"최종 점수: {final_score}")
+    print(final_score)
